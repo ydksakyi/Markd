@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MarkD</title>
+		<link rel="stylesheet" href="landingpage.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+			rel="stylesheet" />
+	</head>
+	<body>
+		<!-- Background overlay -->
+		<div class="bg-overlay"></div>
+
+		<!-- Main App Shell -->
+		<main class="app-shell">
+			<!-- KNUST Badge -->
+			<div class="knust-badge">
+				<span class="badge-dot"></span>
+				<span>KNUST · Kumasi, Ghana</span>
+			</div>
+
+			<!-- ─── SECTION 1: Role Select ─── -->
+			<section id="section-home" class="panel active" data-section="home">
+				<div class="panel-header">
+					<div class="logo-mark">
+						<i class="fa-solid fa-calendar-check"></i>
+					</div>
+					<h1>Class Attendance<br /><em>System</em></h1>
+					<p class="subtitle">
+						Mark and track attendance seamlessly across all courses at KNUST.
+					</p>
+				</div>
+
+				<div class="role-cards">
+					<button class="role-card" id="btn-goto-student" data-target="student">
+						<div class="role-icon">
+							<i class="fa-solid fa-graduation-cap"></i>
+						</div>
+						<div class="role-info">
+							<strong>Student</strong>
+							<span>Mark your attendance</span>
+						</div>
+						<i class="fa-solid fa-arrow-right role-arrow"></i>
+					</button>
+
+					<button
+						class="role-card"
+						id="btn-goto-lecturer"
+						data-target="lecturer-login">
+						<div class="role-icon">
+							<i class="fa-solid fa-chalkboard-user"></i>
+						</div>
+						<div class="role-info">
+							<strong>Lecturer</strong>
+							<span>Manage your sessions</span>
+						</div>
+						<i class="fa-solid fa-arrow-right role-arrow"></i>
+					</button>
+				</div>
+
+				<footer class="panel-footer">
+					<span>Kwame Nkrumah University of Science &amp; Technology</span>
+				</footer>
+			</section>
+
+			<!-- ─── SECTION 2: Student Attendance ─── -->
+			<section id="section-student" class="panel hidden" data-section="student">
+				<div class="panel-header">
+					<button class="back-btn" data-target="home">
+						<i class="fa-solid fa-arrow-left"></i> Back
+					</button>
+					<div class="logo-mark small">
+						<i class="fa-solid fa-graduation-cap"></i>
+					</div>
+					<h2>Mark Attendance</h2>
+					<p class="subtitle">
+						Fill in your details and the session access code.
+					</p>
+				</div>
+
+				<form id="student-form" novalidate>
+					<div class="form-group">
+						<label for="student-name">Full Name</label>
+						<div class="input-wrap">
+							<i class="fa-solid fa-user input-icon"></i>
+							<input
+								type="text"
+								id="student-name"
+								placeholder="e.g. Daniel Kwame Yirenkyi"
+								autocomplete="name" />
+						</div>
+						<span class="error-text"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="student-email">Student Email</label>
+						<div class="input-wrap">
+							<i class="fa-solid fa-envelope input-icon"></i>
+							<input
+								type="email"
+								id="student-email"
+								placeholder="e.g. kwame@st.knust.edu.gh"
+								autocomplete="email" />
+						</div>
+						<span class="error-text"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="student-course">Course</label>
+						<div class="input-wrap select-wrap">
+							<i class="fa-solid fa-book-open input-icon"></i>
+							<select id="student-course">
+								<option value="">— Select your course —</option>
+								<option value="CE155">CE155 · Environmental Studies</option>
+								<option value="COE153">COE153 · Engineering Technology</option>
+								<option value="COE181">COE181 · Applied Electricity</option>
+								<option value="ENGL157">
+									ENGL157 · Communication Skills I
+								</option>
+								<option value="MATH151">MATH151 · Algebra</option>
+								<option value="ME159">ME159 · Technical Drawing</option>
+								<option value="ME161">ME161 · Basic Mechanics</option>
+								<option value="AI150">
+									AI150 · Fundamentals of Responsible AI
+								</option>
+							</select>
+							<i class="fa-solid fa-chevron-down select-arrow"></i>
+						</div>
+						<span class="error-text"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="student-access-code">Session Access Code</label>
+						<div class="input-wrap">
+							<i class="fa-solid fa-key input-icon"></i>
+							<input
+								type="text"
+								id="student-access-code"
+								placeholder="Enter code from your lecturer"
+								maxlength="8"
+								style="text-transform: uppercase; letter-spacing: 0.2em" />
+						</div>
+						<span class="error-text"></span>
+					</div>
+
+					<button type="submit" class="primary-btn" id="student-submit-btn">
+						<span class="btn-spinner" style="display: none"></span>
+						<span class="btn-text"
+							><i class="fa-solid fa-check-circle"></i> Mark Attendance</span
+						>
+					</button>
+				</form>
+			</section>
+
+			<!-- ─── SECTION 3: Lecturer Login ─── -->
+			<section
+				id="section-lecturer-login"
+				class="panel hidden"
+				data-section="lecturer-login">
+				<div class="panel-header">
+					<button class="back-btn" data-target="home">
+						<i class="fa-solid fa-arrow-left"></i> Back
+					</button>
+					<div class="logo-mark small">
+						<i class="fa-solid fa-chalkboard-user"></i>
+					</div>
+					<h2>Lecturer Login</h2>
+					<p class="subtitle">
+						Enter your credentials to access your dashboard.
+					</p>
+				</div>
+
+				<form id="lecturer-login-form" novalidate>
+					<div class="form-group">
+						<label for="lecturer-email">Lecturer Email</label>
+						<div class="input-wrap">
+							<i class="fa-solid fa-envelope input-icon"></i>
+							<input
+								type="email"
+								id="lecturer-email"
+								placeholder="e.g. kweku@lt.knust.edu.gh"
+								autocomplete="email" />
+						</div>
+						<span class="error-text"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="lecturer-id">Lecturer ID</label>
+						<div class="input-wrap">
+							<i class="fa-solid fa-id-badge input-icon"></i>
+							<input
+								type="text"
+								id="lecturer-id"
+								placeholder="e.g. KOGAE181"
+								autocomplete="username" />
+						</div>
+						<span class="error-text"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="lecturer-password">Password</label>
+						<div class="input-wrap">
+							<i class="fa-solid fa-lock input-icon"></i>
+							<input
+								type="password"
+								id="lecturer-password"
+								placeholder="Enter your password"
+								autocomplete="current-password" />
+							<button
+								type="button"
+								class="toggle-pw"
+								aria-label="Toggle password visibility">
+								<i class="fa-solid fa-eye"></i>
+							</button>
+						</div>
+						<span class="error-text"></span>
+					</div>
+
+					<button type="submit" class="primary-btn" id="lecturer-submit-btn">
+						<span class="btn-spinner" style="display: none"></span>
+						<span class="btn-text"
+							><i class="fa-solid fa-right-to-bracket"></i> Sign In</span
+						>
+					</button>
+				</form>
+			</section>
+
+			<!-- ─── SECTION 4: Lecturer Dashboard ─── -->
+			<section
+				id="section-dashboard"
+				class="panel hidden"
+				data-section="dashboard">
+				<div class="panel-header">
+					<div class="dashboard-topbar">
+						<div class="logo-mark small">
+							<i class="fa-solid fa-gauge-high"></i>
+						</div>
+						<button class="logout-btn" id="logout-btn">
+							<i class="fa-solid fa-right-from-bracket"></i> Logout
+						</button>
+					</div>
+					<h2>Dashboard</h2>
+					<p class="subtitle">
+						Welcome back,
+						<strong id="dashboard-lecturer-name">Lecturer</strong>.
+					</p>
+				</div>
+
+				<!-- Stats strip -->
+				<div class="stats-strip">
+					<div class="stat-card">
+						<span class="stat-num" id="stat-students">0</span>
+						<span class="stat-label">Students</span>
+					</div>
+					<div class="stat-card">
+						<span class="stat-num" id="stat-sessions">0</span>
+						<span class="stat-label">Sessions</span>
+					</div>
+					<div class="stat-card">
+						<span class="stat-num" id="stat-attendance">0%</span>
+						<span class="stat-label">Avg. Attendance</span>
+					</div>
+				</div>
+
+				<!-- Action Tabs -->
+				<div class="tab-bar">
+					<button class="tab-btn active" data-tab="tab-overview">
+						Overview
+					</button>
+					<button class="tab-btn" data-tab="tab-add-student">
+						Add Student
+					</button>
+					<button class="tab-btn" data-tab="tab-access-code">
+						Access Code
+					</button>
+					<button class="tab-btn" data-tab="tab-records">Records</button>
+				</div>
+
+				<!-- Tab: Overview -->
+				<div id="tab-overview" class="tab-panel active">
+					<div class="overview-grid">
+						<div class="overview-card" id="card-goto-add">
+							<i class="fa-solid fa-user-plus card-icon"></i>
+							<strong>Add Student</strong>
+							<p>Enroll a new student to your roster.</p>
+						</div>
+						<div class="overview-card" id="card-goto-code">
+							<i class="fa-solid fa-key card-icon"></i>
+							<strong>Generate Code</strong>
+							<p>Create a session access code for students.</p>
+						</div>
+						<div class="overview-card" id="card-goto-records">
+							<i class="fa-solid fa-table-list card-icon"></i>
+							<strong>View Records</strong>
+							<p>Browse all attendance records and students.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tab: Add Student -->
+				<div id="tab-add-student" class="tab-panel hidden">
+					<form id="add-student-form" novalidate>
+						<div class="form-group">
+							<label for="add-student-name">Full Name</label>
+							<div class="input-wrap">
+								<i class="fa-solid fa-user input-icon"></i>
+								<input
+									type="text"
+									id="add-student-name"
+									placeholder="e.g. Abena Asante" />
+							</div>
+							<span class="error-text"></span>
+						</div>
+						<div class="form-group">
+							<label for="add-student-email">Student Email</label>
+							<div class="input-wrap">
+								<i class="fa-solid fa-envelope input-icon"></i>
+								<input
+									type="email"
+									id="add-student-email"
+									placeholder="e.g. abena@st.knust.edu.gh" />
+							</div>
+							<span class="error-text"></span>
+						</div>
+						<div class="form-group">
+							<label for="add-student-course">Course</label>
+							<div class="input-wrap select-wrap">
+								<i class="fa-solid fa-book-open input-icon"></i>
+								<select id="add-student-course">
+									<option value="">— Select course —</option>
+									<option value="CE155">CE155 · Environmental Studies</option>
+									<option value="COE153">
+										COE153 · Engineering Technology
+									</option>
+									<option value="COE181">COE181 · Applied Electricity</option>
+									<option value="ENGL157">
+										ENGL157 · Communication Skills I
+									</option>
+									<option value="MATH151">MATH151 · Algebra</option>
+									<option value="ME159">ME159 · Technical Drawing</option>
+									<option value="ME161">ME161 · Basic Mechanics</option>
+									<option value="AI150">
+										AI150 · Fundamentals of Responsible AI
+									</option>
+								</select>
+								<i class="fa-solid fa-chevron-down select-arrow"></i>
+							</div>
+							<span class="error-text"></span>
+						</div>
+						<button type="submit" class="primary-btn" id="add-student-submit">
+							<span class="btn-spinner" style="display: none"></span>
+							<span class="btn-text"
+								><i class="fa-solid fa-user-plus"></i> Add Student</span
+							>
+						</button>
+					</form>
+				</div>
+
+				<!-- Tab: Access Code -->
+				<div id="tab-access-code" class="tab-panel hidden">
+					<div class="form-group">
+						<label for="code-course">Select Course</label>
+						<div class="input-wrap select-wrap">
+							<i class="fa-solid fa-book-open input-icon"></i>
+							<select id="code-course">
+								<option value="">— Select course —</option>
+								<option value="CE155">CE155 · Environmental Studies</option>
+								<option value="COE153">COE153 · Engineering Technology</option>
+								<option value="COE181">COE181 · Applied Electricity</option>
+								<option value="ENGL157">
+									ENGL157 · Communication Skills I
+								</option>
+								<option value="MATH151">MATH151 · Algebra</option>
+								<option value="ME159">ME159 · Technical Drawing</option>
+								<option value="ME161">ME161 · Basic Mechanics</option>
+								<option value="AI150">
+									AI150 · Fundamentals of Responsible AI
+								</option>
+							</select>
+							<i class="fa-solid fa-chevron-down select-arrow"></i>
+						</div>
+					</div>
+					<button class="primary-btn" id="generate-code-btn">
+						<span class="btn-text"
+							><i class="fa-solid fa-wand-magic-sparkles"></i> Generate
+							Code</span
+						>
+					</button>
+
+					<div id="generated-code-box" class="code-display hidden">
+						<p class="code-label">
+							Session Code for <span id="code-course-name">—</span>
+						</p>
+						<div class="code-value" id="code-value">——</div>
+						<p class="code-expiry">
+							Expires in <span id="code-timer">05:00</span>
+						</p>
+						<button class="copy-btn" id="copy-code-btn">
+							<i class="fa-solid fa-copy"></i> Copy Code
+						</button>
+					</div>
+				</div>
+
+				<!-- Tab: Records -->
+				<div id="tab-records" class="tab-panel hidden">
+					<div class="records-toolbar">
+						<div class="input-wrap search-wrap">
+							<i class="fa-solid fa-magnifying-glass input-icon"></i>
+							<input
+								type="text"
+								id="records-search"
+								placeholder="Search by name or course…" />
+						</div>
+						<button
+							class="icon-btn"
+							id="clear-records-btn"
+							title="Clear all records">
+							<i class="fa-solid fa-trash"></i>
+						</button>
+					</div>
+					<div id="records-list" class="records-list">
+						<div class="empty-state">
+							<i class="fa-solid fa-inbox"></i>
+							<p>No attendance records yet.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Toast Container -->
+		<div id="toast-container" class="toast-container"></div>
+
+		<!-- Confirm Modal -->
+		<div
+			id="confirm-modal"
+			class="modal"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="modal-title">
+			<div class="modal-content">
+				<h3 id="modal-title">Confirm Action</h3>
+				<p id="modal-body">Are you sure?</p>
+				<div class="modal-actions">
+					<button class="modal-btn cancel" id="modal-cancel">Cancel</button>
+					<button class="modal-btn confirm" id="modal-confirm">Confirm</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="landingpage.js"></script>
+	</body>
+</html>
