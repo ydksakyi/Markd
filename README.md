@@ -30,3 +30,22 @@ QuoteX is a minimalist quote generator that displays categorized quotes with aut
 - Lightweight app architecture
 
 ---
+## General Notes
+
+- All projects are fully client-side (no backend or database).
+- Data persistence is handled using browser localStorage where applicable.
+- Designed to be beginner-to-intermediate level implementations with clean UI focus.
+
+---
+
+## How to Run
+
+1. Clone or download the repository
+2. Open any project folder
+3. Launch the `.html` file in a browser
+
+No build tools or dependencies required.
+
+---
+
+## Daniel Yirenkyi
